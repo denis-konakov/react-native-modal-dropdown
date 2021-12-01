@@ -59,6 +59,11 @@ export default class ModalDropdown extends Component {
       PropTypes.object,
       PropTypes.array,
     ]),
+    modalStyle: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.array,
+    ]),
     defaultTextStyle: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.object,
@@ -277,7 +282,7 @@ export default class ModalDropdown extends Component {
   };
 
   _renderModal() {
-    const { animated, accessible, dropdownStyle } = this.props;
+    const { animated, accessible, modalStyle, dropdownStyle } = this.props;
     const { showDropdown, loading } = this.state;
 
     if (showDropdown && this._buttonFrame) {
@@ -303,7 +308,7 @@ export default class ModalDropdown extends Component {
             disabled={!showDropdown}
             onPress={this._onModalPress}
           >
-            <View style={styles.modal}>
+            <View style={[styles.modal, modalStyle]}>
               <View style={[styles.dropdown, dropdownStyle, frameStyle]}>
                 {loading ? this._renderLoading() : this._renderDropdown()}
               </View>
